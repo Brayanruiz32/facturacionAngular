@@ -25,13 +25,13 @@ export const invoiceData: Invoice = {
             quantity: 1
         },
         {
-            id:1,
+            id:2,
             product: 'mouse',
             price: 222, 
             quantity: 5
         },
         {
-            id:1,
+            id:3,
             product: 'monitor',
             price: 111, 
             quantity: 3

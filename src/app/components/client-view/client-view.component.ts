@@ -1,11 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Address } from '../../models/address';
 
 @Component({
-  selector: 'app-client-view',
+  selector: 'client-view',
   standalone: true,
   imports: [],
   templateUrl: './client-view.component.html'
 })
 export class ClientViewComponent {
+
+
+  @Input() name!: string;
+  @Input() lastname!: string;
+  @Input() address!: Address;
 
 }

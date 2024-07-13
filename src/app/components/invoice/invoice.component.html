@@ -4,57 +4,24 @@
             <h2>Ejemplo de factura</h2>
         </div>
         <div class="card-body">
-            <div>
-                <ul class="list-group">
-                    <li class="list-group-item">
-                        Id: {{invoice.id}}
-                    </li>
-                    <li class="list-group-item">
-                        Nombre: {{invoice.name}}
-                    </li>
-                </ul>
-            </div>
+            <invoice-view [id]="invoice.id" [name]="invoice.name"></invoice-view>
             <div class="row">
                 <div class="col">
-                    <h3>Datos del cliente</h3>
-                    <ul class="list-group">
-                        <li class="list-group-item">{{invoice.client.name}}
-                            {{invoice.client.lastname}}</li>
-                        <li class="list-group-item">{{invoice.client.address.street}}
-                            {{invoice.client.address.number}}</li>
-                    </ul>
+                    <client-view [name]="invoice.client.name" 
+                    [lastname]="invoice.client.lastname"
+                    [address]="invoice.client.address"
+                    ></client-view>
                 </div>
                 <div class="col">
                     <h3>Datos de la empresa</h3>
-                    <ul class="list-group">
-                        <li class="list-group-item">{{invoice.company.name}}</li>
-                        <li class="list-group-item">{{invoice.company.fiscalNumber}}</li>
-                    </ul>
+                    <company-view [name]="invoice.company.name" [fiscalNumber]="invoice.company.fiscalNumber"></company-view>
                 </div>
             </div>
             <div>
-                <h4>Detalle de la factura</h4>
-                <table class="table table-striped table-hover">
-                    <thead>
-                        <tr>
-                            <th>id</th>
-                            <th>product</th>
-                            <th>price</th>
-                            <th>quantity</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @for (item of invoice.items; track $index) {
-                        <tr>
-                            <td>{{item.id}}</td>
-                            <td>{{item.product}}</td>
-                            <td>{{item.price}}</td>
-                            <td>{{item.quantity}}</td>
-                        </tr>
-                        }
-                    </tbody>
-                </table>
+                <list-items [items]="invoice.items" (removeEventEmitter)="removeItem($event)"></list-items>
+                <total [total]="total"></total>
             </div>
+            <form-item (addItemEventEmitter)="addItem($event)"></form-item>
         </div>
     </div>
 </div>
